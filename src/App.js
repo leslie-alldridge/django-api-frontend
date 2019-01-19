@@ -11,7 +11,7 @@ class App extends Component {
     try {
       axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
       axios.defaults.xsrfCookieName = "csrftoken";
-      axios.get("https://django-backend-sqlite.herokuapp.com/bucketlists/").then(data => {
+      axios.get("/bucketlists/").then(data => {
         console.log(data);
         
         this.setState({

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 import "./App.css";
 
@@ -8,18 +7,20 @@ class App extends Component {
     data: []
   };
   componentDidMount() {
-    try {
-   
-      axios.get("https://django-backend-sqlite.herokuapp.com/bucketlists/").then(data => {
-        console.log(data);
-        
-        this.setState({
-          data: data.data
-        });
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+    targetUrl = 'https://django-backend-sqlite.herokuapp.com/bucketlists/'
+fetch(proxyUrl + targetUrl)
+  .then(blob => blob.json())
+  .then(data => {
+    console.log(data);
+  this.setState({
+    data: data
+  })
+  })
+  .catch(e => {
+    console.log(e);
+    return e;
+  });
   }
   render() {
     return (
